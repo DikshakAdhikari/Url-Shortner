@@ -1,4 +1,5 @@
 import express from 'express'
+import urlRouter from './routes/url'
 const app= express();
 import dotenv from 'dotenv'
  dotenv.config()
@@ -7,6 +8,10 @@ import dotenv from 'dotenv'
 
 app.use(express.json())
 mongooseConnect()
+
+app.use('/url', urlRouter)
+
+
 
 app.get('/', (req,res)=> {
      res.send('Connected Successfully baby!')
