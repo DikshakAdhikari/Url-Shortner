@@ -5,7 +5,8 @@ import dotenv from 'dotenv'
  dotenv.config()
  const port= process.env.PORT
  import { mongooseConnect } from './connection/connect';
-
+ import cookieParser from 'cookie-parser'
+ app.use(cookieParser())
 app.use(express.json())
 mongooseConnect()
 
