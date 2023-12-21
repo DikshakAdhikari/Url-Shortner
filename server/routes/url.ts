@@ -11,3 +11,4 @@ router.get('/:id', redirectToUrl)
 router.get('/analytics/:id', getAnalytics)
 
 export default router
+

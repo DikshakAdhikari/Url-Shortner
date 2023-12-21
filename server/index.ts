@@ -1,5 +1,6 @@
 import express from 'express'
 import urlRouter from './routes/url'
+import userRouter from './routes/user'
 const app= express();
 import dotenv from 'dotenv'
  dotenv.config()
@@ -11,7 +12,7 @@ app.use(express.json())
 mongooseConnect()
 
 app.use('/url', urlRouter)
-
+app.use('/user', userRouter)
 
 
 app.get('/', (req,res)=> {
