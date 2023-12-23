@@ -1,14 +1,16 @@
 import express from 'express'
-import { urlModel } from '../models/url'
-import { nanoid } from 'nanoid'
-import { getAnalytics, postUrlData, redirectToUrl } from '../controllers/urlController'
+import { getAllUrls, getAnalytics,  postUrlData, redirectToUrl } from '../controllers/urlController'
+import { vertifyJwt } from '../middleware/verifyJwt'
+
 const router= express.Router()
 
-router.post('/', postUrlData)
+router.post('/', vertifyJwt, postUrlData)
 
-router.get('/:id', redirectToUrl)
+router.get('/:id', vertifyJwt, redirectToUrl)
 
-router.get('/analytics/:id', getAnalytics)
+router.get('/analytics/:id', vertifyJwt, getAnalytics)
+
+router.post('/getAllUrls', vertifyJwt, getAllUrls)
 
 export default router
 

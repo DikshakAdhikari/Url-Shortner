@@ -14,13 +14,18 @@ var urlSchema = new mongoose_1.default.Schema({
     redirectUrl: {
         type: String,
         required: true,
-        unique: true
+        unique: false
     },
     visitHistory: [{
-            timeStamp: {
+            timestamp: {
                 type: Number,
                 required: true
             }
-        }]
+        }],
+    createdBy: {
+        type: mongoose_1.default.Schema.Types.ObjectId,
+        ref: "users",
+        required: true
+    }
 }, { timestamps: true });
 exports.urlModel = mongoose_1.default.model('url', urlSchema);

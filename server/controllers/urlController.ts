@@ -1,18 +1,21 @@
 import express, { Request,Response, NextFunction } from 'express'
 import { urlModel } from '../models/url'
 import { nanoid } from 'nanoid'
+import { userModel } from '../models/user';
 const router= express.Router()
 
-export const postUrlData = async (req: Request, res: Response): Promise<void> => {
+export const postUrlData = async (req: Request, res: Response)=> {
     try {
+      const userId= req.headers['userId']
       const { redirectUrl }: { redirectUrl: string } = req.body;
       const shortId: string = nanoid(7);
   
-     await urlModel.create({ redirectUrl, shortId });
+    const data=  await urlModel.create({ shortId, redirectUrl , createdBy: userId});
+    data.save()
 
       res.sendStatus(200);
     } catch (err) {
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({ error: err });
     }
   };
 
@@ -38,3 +41,14 @@ export const postUrlData = async (req: Request, res: Response): Promise<void> =>
         res.status(404).json(err)
     }
   }
+  
+  export const getAllUrls = async (req:Request, res:Response) => {
+    try{
+        console.log('fdfdfdfdf');       
+        const urls= await urlModel.find({createdBy: req.headers["userId"]})
+        console.log(urls);
+    }catch(err){
+      res.status(404).json(err)
+    }
+  }
+  

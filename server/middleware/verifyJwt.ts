@@ -5,8 +5,12 @@ const secret= 'secret'
 export const vertifyJwt = async(req:Request,res:Response,next:NextFunction)=> {
     try{
         const reqHeader = req.headers.authorization;
+        //console.log(reqHeader);
+        
         if(reqHeader){
         const token = reqHeader?.split(' ')[1]
+        //console.log(token);
+        
         if(!process.env.SECRET_KEY){
             return res.sendStatus(403);
          }

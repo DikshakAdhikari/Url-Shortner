@@ -1,6 +1,7 @@
 import express from 'express'
 import { userModel } from '../models/user'
 import jwt from 'jsonwebtoken'
+import { vertifyJwt } from '../middleware/verifyJwt'
 const router= express.Router()
 const secret= 'secret'
 
@@ -23,10 +24,13 @@ router.get('/signin', async(req,res)=> {
         if(!user){
             return res.status(400).json('User does not exist!')
         }
-        const token= jwt.sign({id:user._id}, secret, {expiresIn:"1h"})
+        if(!process.env.SECRET_KEY){
+            return res.sendStatus(403)
+        }
+        const token= jwt.sign({id:user._id}, process.env.SECRET_KEY , {expiresIn:"1h"})
         //console.log(token);
         res.cookie('token',token, {httpOnly:true})
-        res.json(token)
+        res.json({message:"Logged In successfully!"})
         
         
     }catch(err){
