@@ -10,6 +10,11 @@ const userSchema= new mongoose.Schema({
         required:true,
         unique:true
     },
+    role:{
+        type:String,
+        default:'NORMAL',
+        required:true
+    }
 },{timestamps:true})
 
 export const userModel= mongoose.model('user', userSchema)

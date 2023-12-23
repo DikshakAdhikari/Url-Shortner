@@ -42,12 +42,20 @@ export const postUrlData = async (req: Request, res: Response)=> {
     }
   }
   
-  export const getAllUrls = async (req:Request, res:Response) => {
-    try{
-        console.log('fdfdfdfdf');       
+  export const getUrls = async (req:Request, res:Response) => {
+    try{      
         const urls= await urlModel.find({createdBy: req.headers["userId"]})
-        console.log(urls);
+        res.json(urls)
     }catch(err){
+      res.status(404).json(err)
+    }
+  }
+
+  export const getAllUrls = async (req:Request, res:Response) => {
+      try{
+        const urls= await urlModel.find({})
+        res.json(urls)
+      }catch(err){
       res.status(404).json(err)
     }
   }

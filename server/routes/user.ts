@@ -27,8 +27,7 @@ router.get('/signin', async(req,res)=> {
         if(!process.env.SECRET_KEY){
             return res.sendStatus(403)
         }
-        const token= jwt.sign({id:user._id}, process.env.SECRET_KEY , {expiresIn:"1h"})
-        //console.log(token);
+        const token= jwt.sign({id:user._id , role:user.role}, process.env.SECRET_KEY , {expiresIn:"1h"})
         res.cookie('token',token, {httpOnly:true})
         res.json({message:"Logged In successfully!"})
         

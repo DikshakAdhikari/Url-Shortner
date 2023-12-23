@@ -28,6 +28,7 @@ export const vertifyJwt = async(req:Request,res:Response,next:NextFunction)=> {
             }
 
             req.headers["userId"]= payload.id
+            req.headers["role"]=payload.role
             next()
 
          })
