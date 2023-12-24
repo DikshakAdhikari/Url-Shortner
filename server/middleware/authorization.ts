@@ -7,7 +7,7 @@ function restrictTo(roles:string[] = []){
             }
             const role:any= req.headers["role"]
             if(!roles.includes(role)){
-                return res.status(401).json('Such role is not present')
+                return res.status(401).json('User not authorize to acess page')
             }
 
             return next()
