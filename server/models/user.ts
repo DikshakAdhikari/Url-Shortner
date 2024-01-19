@@ -38,8 +38,6 @@ const userSchema = new mongoose.Schema<IUser>({
 
 // Define the pre-save hook
 userSchema.pre<IUser>("save", function (next) {
-    console.log('dfdfdfd');
-    
     const user = this;
     if(!user.isModified("password")) {return}
     const salt = randomBytes(16).toString();
