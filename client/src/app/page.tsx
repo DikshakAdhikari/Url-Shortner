@@ -2,9 +2,11 @@
 import Dashboard from "../components/Home";
 import Navbar from "@/components/Navbar";
 import SideBar from "@/components/SideBar";
+import { useState } from "react";
 
 
 export default function Home() {
+  
   return (
     <div className=" flex  w-[100vw] bg-slate-200 fixed">
     <SideBar />

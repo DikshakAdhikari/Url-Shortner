@@ -2,11 +2,17 @@ import express from 'express'
 import urlRouter from './routes/url'
 import userRouter from './routes/user'
 const app= express();
+import cors from 'cors'
 import dotenv from 'dotenv'
  dotenv.config()
  const port= process.env.PORT
  import { mongooseConnect } from './connection/connect';
  import cookieParser from 'cookie-parser'
+ app.use(cors({
+     origin: 'http://localhost:3001', 
+     credentials: true, 
+   })); 
+
  app.use(cookieParser())
  app.use(express.urlencoded({extended:false})) //It is used to handle form data as request
 app.use(express.json())

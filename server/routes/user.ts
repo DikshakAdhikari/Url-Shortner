@@ -13,13 +13,13 @@ router.post('/', async(req,res)=>{
         const {email, password}= req.body
        const data=  await userModel.create({email, password})
         data.save()
-        res.sendStatus(200)
+        res.status(200).json("User registered successfully!")
     }catch(err){
         res.status(404).json(err)
     }
 })
 
-router.get('/signin', async(req,res)=> {
+router.post('/signin', async(req,res)=> {
     
     try{
         const {email, password}= req.body 
