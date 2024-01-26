@@ -1,5 +1,6 @@
 "use client"
 import { BASE_URL } from '@/Secrets';
+import { useRouter } from 'next/navigation';
 // SignupForm.tsx
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 
@@ -13,6 +14,8 @@ const Signin: React.FC = () => {
     email: '',
     password: '',
   });
+
+  const router= useRouter()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,7 +36,8 @@ const Signin: React.FC = () => {
             throw new Error("Network error!")
         }
         const data= await res.json();
-        console.log(data);
+        
+        router.push('/shortner')
         
      }catch(err){
         console.log(err);
