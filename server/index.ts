@@ -27,7 +27,6 @@ app.get('/:id', async(req,res)=> {
   try{
     const tinyUrl = req.params.id;
   const validUrl= await urlModel.findOne({shortId:tinyUrl})
-  console.log(validUrl?.redirectUrl);
   
     if(validUrl){
       const urlDoc = await urlModel.updateOne(
@@ -39,8 +38,8 @@ app.get('/:id', async(req,res)=> {
     }
   
   }catch(err){
-    console.log(err);
-    
+    // console.log(err);
+    res.status(403).json({message:err})
   }
   
 })
