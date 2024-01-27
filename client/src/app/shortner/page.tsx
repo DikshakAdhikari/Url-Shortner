@@ -4,11 +4,14 @@ import Shortner from "@/components/Shortner";
 import SideBar from "@/components/SideBar";
 import { FunctionComponent } from "react";
 
+
 interface pageProps {
     
 }
  
 const page: FunctionComponent<pageProps> = () => {
+     
+    
     return (
         <div className=" flex  w-[100vw] bg-slate-200 fixed">
         <SideBar />
