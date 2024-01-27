@@ -27,12 +27,20 @@ app.get('/:id', async(req,res)=> {
   try{
     const tinyUrl = req.params.id;
   const validUrl= await urlModel.findOne({shortId:tinyUrl})
+  console.log(validUrl?.redirectUrl);
+  
     if(validUrl){
-      res.redirect(validUrl.redirectUrl)
+      const urlDoc = await urlModel.updateOne(
+        { shortId: tinyUrl },
+        { $push: { visitHistory: { timestamp: Date.now() } } }
+      );
+       res.set('Cache-Control', 'no-cache');
+       res.redirect(validUrl.redirectUrl)
     }
   
   }catch(err){
-    res.status(403).json(err)
+    console.log(err);
+    
   }
   
 })
