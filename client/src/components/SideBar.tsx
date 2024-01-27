@@ -11,7 +11,7 @@ interface SideBarProps {
 const SideBar: FunctionComponent<SideBarProps> = () => {
     const [expand, setExpand]= useState(true)
     const router= useRouter()
-    console.log(Cookies.get('token'));
+    //console.log(Cookies.get('token'));
   
     const handleLogout= ()=> {
       Cookies.remove('token');

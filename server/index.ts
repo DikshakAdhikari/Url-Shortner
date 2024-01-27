@@ -8,6 +8,7 @@ import dotenv from 'dotenv'
  const port= process.env.PORT
  import { mongooseConnect } from './connection/connect';
  import cookieParser from 'cookie-parser'
+import { urlModel } from './models/url';
  app.use(cors({
      origin: 'http://localhost:3001', 
      credentials: true, 
@@ -22,8 +23,18 @@ app.use('/url', urlRouter)
 app.use('/user', userRouter)
 
 
-app.get('/', (req,res)=> {
-     res.send('Connected Successfully baby!')
+app.get('/:id', async(req,res)=> {
+  try{
+    const tinyUrl = req.params.id;
+  const validUrl= await urlModel.findOne({shortId:tinyUrl})
+    if(validUrl){
+      res.redirect(validUrl.redirectUrl)
+    }
+  
+  }catch(err){
+    res.status(403).json(err)
+  }
+  
 })
 
 app.listen(port, ()=> console.log(`Server is listening on port ${port}`)

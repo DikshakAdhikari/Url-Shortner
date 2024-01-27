@@ -23,7 +23,11 @@ export const postUrlData = async (req: Request, res: Response)=> {
     try{
         const id =  req.params.id
         console.log(id);
-        const urlDoc = await urlModel.findOneAndUpdate({shortId:id},{$push:{visitHistory:Date.now()}})        
+        const f= await urlModel.updateOne({shortId:id}, {$set: {$push:{visitHistory:Date.now()}} })
+        console.log(f);
+        
+        const urlDoc = await urlModel.findOneAndUpdate({shortId:id},{$push:{visitHistory:Date.now()}})    
+        res.json(urlDoc)    
         console.log(urlDoc);       
     }catch(err){
         res.status(404).json(err)

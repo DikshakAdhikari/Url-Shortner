@@ -23,8 +23,8 @@ router.post('/signin', async(req,res)=> {
     
     try{
         const {email, password}= req.body 
-        // const user = await userModel.findOne(email, password) //here password is in hashed form, so it cannot find such password user in db. So first we'll hash and then will check for that hashed email user
-
+        // const user = await userModel.findOne(email, password) //here password is in hashed form, so it cannot find such password user in db. So first we'll hash and then will check for that hashed email user.
+        
         const user = await userModel.matchPassword(email, password) 
         
         if (!user) {

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 interface DashboardProps {
     
 }
- 
+
 const Dashboard: FunctionComponent<DashboardProps> = () => {
   const router= useRouter()
 
