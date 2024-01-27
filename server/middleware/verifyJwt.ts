@@ -1,21 +1,19 @@
-import jwt from 'jsonwebtoken'
-import express, { Request,Response, NextFunction } from 'express'
+import { Request, Response, NextFunction } from 'express'
+import jwt, { VerifyErrors } from 'jsonwebtoken'
 
-const secret= 'secret'
-export const vertifyJwt = async(req:Request,res:Response,next:NextFunction)=> {
+export const vertifyJwt= async(req:Request ,res:Response, next:NextFunction)=> {
     try{
-        const reqHeader = req.headers.authorization;
-        //console.log(reqHeader);
-        
-        if(reqHeader){
-        const token = reqHeader?.split(' ')[1]
-        //console.log(token);
+        const token = req.cookies['token']
+        if(!token){
+            return res.send('Cookie expired / no cookie')
+        }
+ 
         
         if(!process.env.SECRET_KEY){
-            return res.sendStatus(403);
-         }
+            return res.sendStatus(403)
+        }
 
-         jwt.verify(token, process.env.SECRET_KEY, (err, payload)=> {
+        jwt.verify(token, process.env.SECRET_KEY, (err:VerifyErrors|null , payload:any)=> {
             if(err){
                 return res.status(400).json(err)
             }
@@ -32,12 +30,8 @@ export const vertifyJwt = async(req:Request,res:Response,next:NextFunction)=> {
             next()
 
          })
-       
-    }else{
-        res.sendStatus(401)
-    }
-
+        
     }catch(err){
-        res.status(403).json({message: 'Jwt verification failed'})
+        res.status(403).json(err)
     }
 }

@@ -1,7 +1,8 @@
+"use client"
 import Cookies from "js-cookie";
 import { HomeLogo, LeftLogo, LoginLogo, LogoutLogo, RegisterLogo, RightLogo } from "@/Logo";
 import { useRouter } from "next/navigation";
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 
 
 interface SideBarProps {
@@ -10,9 +11,13 @@ interface SideBarProps {
  
 const SideBar: FunctionComponent<SideBarProps> = () => {
     const [expand, setExpand]= useState(true)
+    const [token, setToken]= useState(null)
     const router= useRouter()
     //console.log(Cookies.get('token'));
-  
+   useEffect(()=> {
+    //@ts-ignore
+      setToken(Cookies.get('token'))
+   },[])
     const handleLogout= ()=> {
       Cookies.remove('token');
     }   
@@ -26,7 +31,7 @@ const SideBar: FunctionComponent<SideBarProps> = () => {
       }
       </div>
     
-        {! Cookies.get('token') ?
+        {!token ?
           (<div className=" flex mt-8 flex-col gap-8 p-3 ">
               <div onClick={()=> router.push('/')} className=" cursor-pointer flex gap-3 items-center">
                   <HomeLogo />
