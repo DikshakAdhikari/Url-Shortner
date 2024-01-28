@@ -14,3 +14,6 @@ This application provides users with the following features
 - Implemented **Authorization**, based on roles assigned to the user. 
 - A **Global Shortner** that can be used to shorten url of any length.
 - Providing feature to track the **analytics** based on counts of visit on particular Url.
+![Screenshot from 2024-01-28 21-37-57](https://github.com/DikshakAdhikari/Url-Shortner/assets/69723589/bb204791-a1c9-4b20-9a29-ee3d98aec741)
+
+file:///home/hunktuck/Pictures/Screenshots/Screenshot%20from%202024-01-28%2022-18-47.png
