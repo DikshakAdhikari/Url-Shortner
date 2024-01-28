@@ -14,7 +14,10 @@ This application provides users with the following features
 - A **Global Shortner** that can be used to shorten url of any length.
 - Providing feature to track the **analytics** based on counts of visit on particular Url.
   
-![Screenshot from 2024-01-28 21-37-57](https://github.com/DikshakAdhikari/Url-Shortner/assets/69723589/bb204791-a1c9-4b20-9a29-ee3d98aec741)    
+![Screenshot from 2024-01-28 21-37-57](https://github.com/DikshakAdhikari/Url-Shortner/assets/69723589/bb204791-a1c9-4b20-9a29-ee3d98aec741)
+
+
+
 
 
 
