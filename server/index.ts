@@ -19,7 +19,7 @@ import mongoose from 'mongoose';
 app.use(express.json())
 
 //@ts-ignore
-  mongoose.connect("mongodb+srv://dikshak302000:galatHai@cluster0.xfupaxp.mongodb.net/?retryWrites=true&w=majority").then(console.log('mongodb connected'))
+  mongoose.connect(process.env.MONGO_URI).then(console.log('mongodb connected'))
   
 
 
