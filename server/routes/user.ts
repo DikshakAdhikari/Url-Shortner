@@ -6,8 +6,6 @@ const router= express.Router()
 const secret= 'secret'
 
 
-
-
 router.post('/', async(req,res)=>{
     try{
         const {email, password}= req.body
