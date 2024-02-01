@@ -34,7 +34,7 @@ router.post('/signin', async(req,res)=> {
         }
         const token= jwt.sign({id:user._id , role:user.role}, process.env.SECRET_KEY , {expiresIn:"1h"})
         res.cookie('token',token, {httpOnly:false})
-        res.json({message:"Logged In successfully!"})
+        res.status(200).json({message:"Logged In successfully!"})
         
         
     }catch(err){
