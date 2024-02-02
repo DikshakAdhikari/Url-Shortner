@@ -47,7 +47,7 @@ var vertifyJwt = function (req, res, next) { return __awaiter(void 0, void 0, vo
         try {
             token = req.headers.authorization;
             if (!token) {
-                return [2 /*return*/, res.send('Cookie expired / no cookie')];
+                return [2 /*return*/, res.send('Token is not valid/ No token')];
             }
             if (!process.env.SECRET_KEY) {
                 return [2 /*return*/, res.sendStatus(403)];
