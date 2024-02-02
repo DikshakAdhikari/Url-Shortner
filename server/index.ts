@@ -10,6 +10,8 @@ import dotenv from 'dotenv'
  mongooseConnect()
  import cookieParser from 'cookie-parser'
 import { urlModel } from './models/url';
+
+
  app.use(cors({
      origin: 'http://localhost:3001', 
      credentials: true, 

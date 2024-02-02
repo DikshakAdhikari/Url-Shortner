@@ -45,16 +45,17 @@ var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var router = express_1.default.Router();
 var secret = 'secret';
 router.post('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, err_1;
+    var _a, email, password, data, err_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
                 _a = req.body, email = _a.email, password = _a.password;
-                return [4 /*yield*/, user_1.userModel.insertMany({ email: email, password: password })];
+                return [4 /*yield*/, user_1.userModel.create({ email: email, password: password })];
             case 1:
-                _b.sent();
-                res.sendStatus(200);
+                data = _b.sent();
+                data.save();
+                res.status(200).json("User registered successfully!");
                 return [3 /*break*/, 3];
             case 2:
                 err_1 = _b.sent();
@@ -64,14 +65,14 @@ router.post('/', function (req, res) { return __awaiter(void 0, void 0, void 0, 
         }
     });
 }); });
-router.get('/signin', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+router.post('/signin', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, email, password, user, token, err_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
                 _a = req.body, email = _a.email, password = _a.password;
-                return [4 /*yield*/, user_1.userModel.findOne({ email: email, password: password })];
+                return [4 /*yield*/, user_1.userModel.matchPassword(email, password)];
             case 1:
                 user = _b.sent();
                 if (!user) {
@@ -80,10 +81,9 @@ router.get('/signin', function (req, res) { return __awaiter(void 0, void 0, voi
                 if (!process.env.SECRET_KEY) {
                     return [2 /*return*/, res.sendStatus(403)];
                 }
-                token = jsonwebtoken_1.default.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: "1h" });
-                //console.log(token);
-                res.cookie('token', token, { httpOnly: true });
-                res.json({ message: "Logged In successfully!" });
+                token = jsonwebtoken_1.default.sign({ id: user._id, role: user.role }, process.env.SECRET_KEY, { expiresIn: "1h" });
+                res.cookie('token', token, { httpOnly: false });
+                res.status(200).json({ message: "Logged In successfully!" });
                 return [3 /*break*/, 3];
             case 2:
                 err_2 = _b.sent();

@@ -46,17 +46,19 @@ var mongooseConnect = function () { return __awaiter(void 0, void 0, void 0, fun
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, mongoose_1.default.connect('mongodb://localhost:27017/shortner')];
+                _a.trys.push([0, 3, , 4]);
+                if (!process.env.MONGO_URI) return [3 /*break*/, 2];
+                return [4 /*yield*/, mongoose_1.default.connect(process.env.MONGO_URI)];
             case 1:
                 _a.sent();
                 console.log('Connected Successfully');
-                return [3 /*break*/, 3];
-            case 2:
+                _a.label = 2;
+            case 2: return [3 /*break*/, 4];
+            case 3:
                 err_1 = _a.sent();
                 console.log('Db Error' + err_1);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); };

@@ -41,39 +41,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.vertifyJwt = void 0;
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-var secret = 'secret';
 var vertifyJwt = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var reqHeader, token;
+    var token;
     return __generator(this, function (_a) {
         try {
-            reqHeader = req.headers.authorization;
-            //console.log(reqHeader);
-            if (reqHeader) {
-                token = reqHeader === null || reqHeader === void 0 ? void 0 : reqHeader.split(' ')[1];
-                //console.log(token);
-                if (!process.env.SECRET_KEY) {
-                    return [2 /*return*/, res.sendStatus(403)];
+            token = req.cookies['token'];
+            if (!token) {
+                return [2 /*return*/, res.send('Cookie expired / no cookie')];
+            }
+            if (!process.env.SECRET_KEY) {
+                return [2 /*return*/, res.sendStatus(403)];
+            }
+            jsonwebtoken_1.default.verify(token, process.env.SECRET_KEY, function (err, payload) {
+                if (err) {
+                    return res.status(400).json(err);
                 }
-                jsonwebtoken_1.default.verify(token, process.env.SECRET_KEY, function (err, payload) {
-                    if (err) {
-                        return res.status(400).json(err);
-                    }
-                    if (!payload) {
-                        return res.sendStatus(403);
-                    }
-                    if (typeof payload === "string") {
-                        return res.sendStatus(403);
-                    }
-                    req.headers["userId"] = payload.id;
-                    next();
-                });
-            }
-            else {
-                res.sendStatus(401);
-            }
+                if (!payload) {
+                    return res.sendStatus(403);
+                }
+                if (typeof payload === "string") {
+                    return res.sendStatus(403);
+                }
+                req.headers["userId"] = payload.id;
+                req.headers["role"] = payload.role;
+                next();
+            });
         }
         catch (err) {
-            res.status(403).json({ message: 'Jwt verification failed' });
+            res.status(403).json(err);
         }
         return [2 /*return*/];
     });

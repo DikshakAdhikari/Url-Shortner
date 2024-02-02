@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllUrls = exports.getAnalytics = exports.redirectToUrl = exports.postUrlData = void 0;
+exports.getAllUrls = exports.getUrls = exports.getAnalytics = exports.redirectToUrl = exports.postUrlData = void 0;
 var express_1 = __importDefault(require("express"));
 var url_1 = require("../models/url");
 var nanoid_1 = require("nanoid");
@@ -69,23 +69,28 @@ var postUrlData = function (req, res) { return __awaiter(void 0, void 0, void 0,
 }); };
 exports.postUrlData = postUrlData;
 var redirectToUrl = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, urlDoc, err_2;
+    var id, f, urlDoc, err_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
+                _a.trys.push([0, 3, , 4]);
                 id = req.params.id;
                 console.log(id);
-                return [4 /*yield*/, url_1.urlModel.findOneAndUpdate({ shortId: id }, { $push: { visitHistory: Date.now() } })];
+                return [4 /*yield*/, url_1.urlModel.updateOne({ shortId: id }, { $set: { $push: { visitHistory: Date.now() } } })];
             case 1:
-                urlDoc = _a.sent();
-                console.log(urlDoc);
-                return [3 /*break*/, 3];
+                f = _a.sent();
+                console.log(f);
+                return [4 /*yield*/, url_1.urlModel.findOneAndUpdate({ shortId: id }, { $push: { visitHistory: Date.now() } })];
             case 2:
+                urlDoc = _a.sent();
+                res.json(urlDoc);
+                console.log(urlDoc);
+                return [3 /*break*/, 4];
+            case 3:
                 err_2 = _a.sent();
                 res.status(404).json(err_2);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); };
@@ -114,21 +119,40 @@ var getAnalytics = function (req, res) { return __awaiter(void 0, void 0, void 0
     });
 }); };
 exports.getAnalytics = getAnalytics;
-var getAllUrls = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+var getUrls = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var urls, err_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                console.log('fdfdfdfdf');
                 return [4 /*yield*/, url_1.urlModel.find({ createdBy: req.headers["userId"] })];
             case 1:
                 urls = _a.sent();
-                console.log(urls);
+                res.json(urls);
                 return [3 /*break*/, 3];
             case 2:
                 err_4 = _a.sent();
                 res.status(404).json(err_4);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.getUrls = getUrls;
+var getAllUrls = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var urls, err_5;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, url_1.urlModel.find({})];
+            case 1:
+                urls = _a.sent();
+                res.json(urls);
+                return [3 /*break*/, 3];
+            case 2:
+                err_5 = _a.sent();
+                res.status(404).json(err_5);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
