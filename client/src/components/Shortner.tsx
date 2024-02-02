@@ -1,5 +1,5 @@
-"use client"
 
+"use client"
 import { BASE_URL } from "@/Secrets";
 import { useEffect, useState } from "react";
 
@@ -9,10 +9,11 @@ const Shortner= () => {
     const [shortIds, setShortIds]= useState([])
     const [toggle, setToggle]= useState(false)
  //console.log(localStorage.getItem('token'));
-    const token= localStorage.getItem('token')
+   
 
     useEffect(()=> {
         const fun= async ()=> {
+            const token= localStorage.getItem('token')
             const headers = {
                 'authorization': token,
                 'Content-Type': 'application/json' // You may include other headers as needed
@@ -31,7 +32,7 @@ const Shortner= () => {
             setToggle(false)    
         }
         fun()
-    })
+    },[])
 
     const handleSubmit = async(e:any)=> {
         e.preventDefault()

@@ -1,4 +1,3 @@
-"use client"
 import Navbar from "@/components/Navbar";
 import Shortner from "@/components/Shortner";
 import SideBar from "@/components/SideBar";
