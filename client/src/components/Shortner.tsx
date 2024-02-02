@@ -8,21 +8,24 @@ const Shortner= () => {
     const [url, setUrl]= useState("");
     const [shortIds, setShortIds]= useState([])
     const [toggle, setToggle]= useState(false)
+ //console.log(localStorage.getItem('token'));
+    const token= localStorage.getItem('token')
 
     useEffect(()=> {
         const fun= async ()=> {
+            const headers = {
+                'authorization': token,
+                'Content-Type': 'application/json' // You may include other headers as needed
+              };
             const res= await fetch(`${BASE_URL}/url/getAllUrls`, {
                 method:"POST",
-                credentials:"include",
-                headers:{
-                    "Content-Type":"application/json"
-                }
+                //@ts-ignore
+                headers: headers
             });
             if(!res.ok){
                 throw new Error("Network problem!")
             }
             const data= await res.json()  
-           // console.log(data);
             
             setShortIds(data)
             setToggle(false)    
@@ -35,8 +38,10 @@ const Shortner= () => {
         try{
             const res= await fetch(`${BASE_URL}/url/`,{
                 method:"POST",
-                credentials:"include",
+                 //@ts-ignore
                 headers:{
+                   
+                    "authorization":localStorage.getItem('token'),
                     "Content-Type":"application/json"
                 },
                 body:JSON.stringify({redirectUrl:url})

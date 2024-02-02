@@ -36,6 +36,7 @@ const Signin: React.FC = () => {
             throw new Error("Network error!")
         }
         const data= await res.json();
+        localStorage.setItem('token', data)
         
         router.push('/shortner')
         

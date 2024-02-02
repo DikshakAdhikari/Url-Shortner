@@ -16,10 +16,10 @@ const SideBar: FunctionComponent<SideBarProps> = () => {
     //console.log(Cookies.get('token'));
    useEffect(()=> {
     //@ts-ignore
-      setToken(Cookies.get('token'))
+      setToken(localStorage.getItem('token'))
    },[])
     const handleLogout= ()=> {
-      Cookies.remove('token');
+      localStorage.clear()
     }   
     
 

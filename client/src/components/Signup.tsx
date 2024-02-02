@@ -28,7 +28,7 @@ const Signup: React.FC = () => {
             method:"POST",
             credentials:'include',
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
             },
             body:JSON.stringify(formData)
         });
@@ -36,6 +36,7 @@ const Signup: React.FC = () => {
             throw new Error("Network error!")
         }
         const data= await res.json();
+        
         if(data){
           router.push("/signin")
         }
