@@ -1,1 +1,1 @@
-export const BASE_URL= 'http://localhost:3000'
+export const BASE_URL= 'https://shorturl-yw7l.onrender.com'
