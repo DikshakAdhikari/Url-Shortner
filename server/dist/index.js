@@ -52,7 +52,7 @@ var connect_1 = require("./connection/connect");
 var cookie_parser_1 = __importDefault(require("cookie-parser"));
 var url_2 = require("./models/url");
 app.use((0, cors_1.default)({
-    origin: 'http://localhost:3001',
+    origin: 'https://dikshak-url-shortner.vercel.app',
     credentials: true,
 }));
 app.use((0, cookie_parser_1.default)());
