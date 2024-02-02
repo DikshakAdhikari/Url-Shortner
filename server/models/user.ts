@@ -49,8 +49,9 @@ userSchema.pre<IUser>("save", function (next) {
 
 // Define the static method for matching password
 userSchema.static('matchPassword', async function (email: string, password: string): Promise<IUser | null> {
+ 
     const user = await this.findOne({ email });
-
+    
     if (!user) {
         throw new Error('User not found');
     }
