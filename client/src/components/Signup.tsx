@@ -11,6 +11,7 @@ interface FormData {
 
 const Signup: React.FC = () => {
   const router= useRouter()
+  const [getDisable, setDisable]= useState(false)
 
   const [formData, setFormData] = useState<FormData>({
     email: '',
@@ -24,6 +25,7 @@ const Signup: React.FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
      try{
+      setDisable(true)
         const res= await fetch(`${BASE_URL}/user/`, {
             method:"POST",
             credentials:'include',
@@ -38,11 +40,13 @@ const Signup: React.FC = () => {
         const data= await res.json();
         
         if(data){
+          setDisable(false)
           router.push("/signin")
         }
         // console.log(data);
         
      }catch(err){
+        setDisable(false)
         console.log(err);
         
      }
@@ -84,7 +88,7 @@ const Signup: React.FC = () => {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+          className={`${ getDisable===true ? ' bg-gray-400' : ' bg-blue-500 '}  text-white px-4 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-300`}
         >
           Sign Up
         </button>

@@ -15,6 +15,8 @@ const Signin: React.FC = () => {
     password: '',
   });
 
+  const [getDisable, setDisable]= useState(false)
+
   const router= useRouter()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -23,6 +25,7 @@ const Signin: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setDisable(true)
      try{
         const res= await fetch(`${BASE_URL}/user/signin/`, {
             method:"POST",
@@ -36,17 +39,19 @@ const Signin: React.FC = () => {
             throw new Error("Network error!")
         }
         const data= await res.json();
-        console.log(data);
-        
+        //console.log(data);
+        setDisable(false)
         localStorage.setItem('token', data)
         
         router.push('/shortner')
         
      }catch(err){
+      setDisable(false)
         console.log(err);
         
      }
   };
+//console.log(getDisable);
 
   //console.log(formData);
   
@@ -85,7 +90,8 @@ const Signin: React.FC = () => {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+          disabled={getDisable}
+          className={`${ getDisable===true ? ' bg-gray-400' : ' bg-blue-500 '}  text-white px-4 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-300`}
         >
           Sign In
         </button>

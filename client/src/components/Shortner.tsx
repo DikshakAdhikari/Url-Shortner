@@ -8,12 +8,15 @@ const Shortner= () => {
     const [url, setUrl]= useState("");
     const [shortIds, setShortIds]= useState([])
     const [toggle, setToggle]= useState(false)
+    const [getDisable, setDisable]= useState(false)
  //console.log(localStorage.getItem('token'));
    
 
     useEffect(()=> {
         const fun= async ()=> {
+           
             const token= localStorage.getItem('token')
+         
             const headers = {
                 'authorization': token,
                 'Content-Type': 'application/json' // You may include other headers as needed
@@ -28,15 +31,17 @@ const Shortner= () => {
             }
             const data= await res.json()  
             
+           
             setShortIds(data)
             setToggle(false)    
         }
         fun()
-    },[])
+    },[getDisable || toggle])
 
     const handleSubmit = async(e:any)=> {
         e.preventDefault()
         try{
+            setDisable(true)
             const res= await fetch(`${BASE_URL}/url/`,{
                 method:"POST",
                  //@ts-ignore
@@ -51,11 +56,13 @@ const Shortner= () => {
                 throw new Error("Network Problem!")
             }
             const data= await res.json()
+            setDisable(false)
             setToggle(true)
             setUrl("")
             
             
         }catch(err){
+            setDisable(false)
             console.log(err);
             
         }
@@ -65,7 +72,7 @@ const Shortner= () => {
         <div>
         <form onSubmit={handleSubmit} className=" flex flex-col items-center gap-5">
             <input onChange={(e)=> setUrl(e.target.value)} required placeholder="Enter URL here" className=" w-[30vw] bg-white p-4 rounded-md outline-none" type="text" />
-            <button type="submit" className=" p-3 px-7 w-[10vw] hover:bg-orange-500 rounded-lg bg-purple-800 text-white font-medium">Submit</button>
+            <button disabled={getDisable} type="submit" className= {`${ getDisable===true ? ' bg-gray-400' : ' bg-purple-800 '} p-3 px-7 w-[10vw] rounded-lg  text-white font-medium`}>Submit</button>
         </form>
         
         <div className="  mt-10 py-4 rounded-lg bg-pink-500 items-center  pr-3 flex flex-col gap-3 ">
@@ -77,7 +84,7 @@ const Shortner= () => {
             {shortIds.map((val)=> (
                 <div className=" flex gap-10">   
                     {/* @ts-ignore */}
-                     <a className=" text-[1.2rem] font-semibold text-white" target="_blank" href={`${BASE_URL}/${val.shortId}`}>
+                     <a onClick={()=> setToggle(!toggle)} className=" text-[1.2rem] font-semibold text-white" target="_blank" href={`${BASE_URL}/${val.shortId}`}>
                     {/* @ts-ignore */}
                         {`${BASE_URL}/${val.shortId}`}             
                     </a> 
