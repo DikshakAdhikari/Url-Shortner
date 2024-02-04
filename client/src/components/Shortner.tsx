@@ -110,7 +110,7 @@ const Shortner= () => {
       <tr>
         <th className="border border-black p-2">Shortened URL</th>
         <th className="border border-black p-2">View Count</th>
-        <th className="border border-black p-2">Remove</th>
+        {/* <th className="border border-black p-2">Remove</th> */}
       </tr>
     </thead>
     <tbody>
@@ -131,7 +131,7 @@ const Shortner= () => {
           {/* @ts-ignore */}
           <td className="border border-black p-2">{val.visitHistory.length}</td>
           {/* @ts-ignore */}
-          <td onClick={()=>handleDelete(val._id)} className="border border-black cursor-pointer p-2"><DeleteLogo /></td>
+          {/* <td onClick={()=>handleDelete(val._id)} className="border border-black cursor-pointer p-2"><DeleteLogo /></td> */}
         </tr>
       ))}
     </tbody>
