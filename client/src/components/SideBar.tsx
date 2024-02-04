@@ -24,10 +24,10 @@ const SideBar: FunctionComponent<SideBarProps> = () => {
     
 
     return ( 
-        <div className={`${expand ? 'w-[15vw]': 'w-fit'}   h-[100vh] border-r-[1px] border-white  bg-black`}>
+        <div className={`${expand ? 'w-[15vw]': 'w-fit'} h-[100vh] border-r-[1px] border-white  bg-black`}>
         <div className=" flex m-2 flex-col gap-4 items-end cursor-pointer ">
       {
-        expand ? <div onClick={()=> setExpand(false)}> <LeftLogo /></div>: <div onClick={()=> setExpand(true)}> <RightLogo /> </div>
+        expand ? <div  onClick={()=> setExpand(false)}> <LeftLogo /></div>: <div onClick={()=> setExpand(true)}> <RightLogo /> </div>
       }
       </div>
     

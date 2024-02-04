@@ -11,7 +11,7 @@ const Dashboard: FunctionComponent<DashboardProps> = () => {
   const router= useRouter()
 
   const handleClick= ()=> {
-    if(Cookies.get('token')){
+    if(localStorage.getItem('token')){
       router.push('/shortner')
     }else{
       router.push('/signin')

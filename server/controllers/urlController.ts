@@ -63,4 +63,14 @@ export const postUrlData = async (req: Request, res: Response)=> {
       res.status(404).json(err)
     }
   }
+
+
+  export const deleteUrl = async (req:Request, res:Response) => {
+    try{
+      const urls= await urlModel.deleteOne({_id:req.params.id})
+      res.json("Removed Successfully")
+    }catch(err){
+    res.status(404).json(err)
+  }
+}
   

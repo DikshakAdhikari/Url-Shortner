@@ -1,5 +1,5 @@
 import express from 'express'
-import {  getAllUrls, getAnalytics,  getUrls,  postUrlData, redirectToUrl } from '../controllers/urlController'
+import {  deleteUrl, getAllUrls, getAnalytics,  getUrls,  postUrlData, redirectToUrl } from '../controllers/urlController'
 import { vertifyJwt } from '../middleware/verifyJwt'
 import restrictTo from '../middleware/authorization'
 
@@ -14,5 +14,7 @@ router.get('/analytics/:id', vertifyJwt, getAnalytics)
 router.post('/getAllUrls', vertifyJwt, restrictTo(['NORMAL','ADMIN']) , getUrls)
 
 router.post('/admin/urls', vertifyJwt, restrictTo(['ADMIN']), getAllUrls)
+
+router.delete('/remove/:id', vertifyJwt , deleteUrl )
 
 export default router
