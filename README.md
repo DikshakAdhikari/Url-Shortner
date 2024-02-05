@@ -16,12 +16,24 @@ This application provides users with the following features
 
 ## Step-1
 
-![Screenshot from 2024-01-28 21-37-57](https://github.com/DikshakAdhikari/Url-Shortner/assets/69723589/bb204791-a1c9-4b20-9a29-ee3d98aec741)
+![Screenshot from 2024-02-05 22-42-40](https://github.com/DikshakAdhikari/Url-Shortner/assets/69723589/62ab1ac4-bbc2-416e-959c-289a85461a89)
+
 
 ## Step-2
 
 
-![Screenshot from 2024-01-28 22-18-47](https://github.com/DikshakAdhikari/Url-Shortner/assets/69723589/ec23e95c-1b6a-4ad9-bd27-aad67e52cb42)
+![Screenshot from 2024-02-05 22-43-00](https://github.com/DikshakAdhikari/Url-Shortner/assets/69723589/e2f8767b-dcac-4f95-a264-e32b6d2e30b2)
+
+## Step-3  
+
+![Screenshot from 2024-02-05 22-44-17](https://github.com/DikshakAdhikari/Url-Shortner/assets/69723589/2d0ecb61-c018-480d-96d9-8632b6035d0d)
+
+## Step-4
+
+![Screenshot from 2024-02-05 22-45-06](https://github.com/DikshakAdhikari/Url-Shortner/assets/69723589/6ba82627-c654-4a7e-9722-ff094905c20c)
+
+
+
 
 
 
