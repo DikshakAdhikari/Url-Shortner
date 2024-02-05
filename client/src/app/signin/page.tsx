@@ -14,7 +14,7 @@ const page: FunctionComponent<pageProps> = () => {
       <SideBar />
        <div className=" flex w-[100vw] h-[100vh] flex-col">
            <Navbar />
-           <div className=" flex overflow-auto justify-center bg-gradient-to-bl items-center from-red-500 to-green-400  gap-36 p-10 h-[100vh] flex-col ">
+           <div className=" flex overflow-auto justify-center bg-gradient-to-bl items-center from-purple-500 to-red-500  gap-36 p-10 h-[100vh] flex-col ">
                <Signin />
            </div>
        </div>

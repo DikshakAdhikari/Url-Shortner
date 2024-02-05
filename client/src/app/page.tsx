@@ -12,7 +12,7 @@ export default function Home() {
     <SideBar />
      <div className=" flex w-[100vw] h-[100vh] flex-col">
          <Navbar />
-         <div className=" flex overflow-auto bg-gradient-to-bl from-red-500 to-green-400  gap-36 p-10 h-[100vh] flex-col ">
+         <div className=" flex overflow-auto bg-gradient-to-bl from-purple-500 to-red-500  gap-36 p-10 h-[100vh] flex-col ">
              <Dashboard />
          </div>
      </div>

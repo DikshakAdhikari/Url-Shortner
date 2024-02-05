@@ -57,7 +57,7 @@ const Signin: React.FC = () => {
   
   return (
     <div className=" max-w-2xl items-center mx-auto mt-10 p-6 bg-white rounded-md shadow-md">
-      <h2 className="text-2xl font-semibold text-center mb-6">Sign In</h2>
+      <h2 className="text-2xl font-semibold font-serif text-center mb-6">Sign In</h2>
       <form onSubmit={handleSubmit}>
  
         <div className="mb-4">
@@ -91,7 +91,7 @@ const Signin: React.FC = () => {
         <button
           type="submit"
           disabled={getDisable}
-          className={`${ getDisable===true ? ' bg-gray-400' : ' bg-blue-500 '}  text-white px-4 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-300`}
+          className={`${ getDisable===true ? ' bg-gray-400' : ' bg-cyan-500 '}  font-serif text-white px-4 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-300`}
         >
           Sign In
         </button>
