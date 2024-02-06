@@ -14,7 +14,7 @@ const Dashboard: FunctionComponent<DashboardProps> = () => {
     if(localStorage.getItem('token')){
       router.push('/shortner')
     }else{
-      router.push('/signin')
+      router.push('/signin') //push to signin route
     }
   }
 
