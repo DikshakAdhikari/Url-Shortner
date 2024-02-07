@@ -73,4 +73,6 @@ export const postUrlData = async (req: Request, res: Response)=> {
     res.status(404).json(err)
   }
 }
+
+
   

@@ -17,7 +17,7 @@ router.post('/', async(req,res)=>{
     }
 })
 
-router.post('/signin', async(req,res)=> {
+router.post('/signin', async(req,res)=> { 
     
     try{
         const {email, password}= req.body 
@@ -41,7 +41,7 @@ router.post('/signin', async(req,res)=> {
     }catch(err){
         res.status(400).json(err)
     }
-})
+}) 
 
 
 export default router

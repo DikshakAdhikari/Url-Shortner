@@ -18,7 +18,7 @@ import { urlModel } from './models/url';
    })); 
 
  app.use(cookieParser())
- app.use(express.urlencoded({extended:false})) //It is used to handle form data as request.....
+ app.use(express.urlencoded({extended:false})) //It is used to handle form data as request
 app.use(express.json())
 
 
